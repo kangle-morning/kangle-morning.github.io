@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Li Kangle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a3a5f;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --light: #ebf8ff;
+            --dark: #2d3748;
+            --text: #4a5568;
+            --background: #f8fafc;
+        }
+        
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(26, 58, 95, 0.9) 0%, rgba(44, 82, 130, 0.85) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+        
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(66, 153, 225, 0.1) 0%, transparent 15%),
+                radial-gradient(circle at 90% 80%, rgba(66, 153, 225, 0.1) 0%, transparent 15%);
+            z-index: 1;
+        }
+        
+        /* Main Content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: -50px auto 40px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.8rem;
+        }
+        
+        .card-header i {
+            background: var(--light);
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .card-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        /* Research Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .project-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .project-meta {
+            display: flex;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+        
+        .project-meta span {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .project-meta i {
+            margin-right: 5px;
+        }
+        
+        .project-content {
+            padding: 1.8rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+        }
+        
+        .tag {
+            background: rgba(66, 153, 225, 0.15);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Publications */
+        .publication-list {
+            list-style: none;
+        }
+        
+        .publication-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            background: rgba(235, 248, 255, 0.4);
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .publication-authors {
+            color: var(--text);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .publication-meta {
+            display: flex;
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.85;
+        }
+        
+        .publication-meta span {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .publication-meta i {
+            margin-right: 5px;
+        }
+        
+        .publication-links {
+            margin-top: 10px;
+            display: flex;
+        }
+        
+        .publication-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 15px;
+            background: var(--light);
+            color: var(--accent);
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .publication-links a:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .publication-links i {
+            margin-right: 6px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: rgba(255, 255, 255, 0.85);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .contact-info i {
+            margin-right: 12px;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                margin: 3px;
+            }
+            
+            .page-header {
+                padding: 3rem 1.5rem;
+            }
+            
+            .card {
+                padding: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>Li Kangle</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <!-- <a href="personal_info.html">Personal Information</a> -->
+                <a href="research.html" class="active">Research</a>
+                <!-- <a href="publications.html">Publications</a> -->
+                <a href="miscellaneous.html">Miscellaneous</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="header-pattern"></div>
+        <div class="header-content">
+            <h1>Research</h1>
+            <p>Exploring the frontiers of quantum physics through analytical and computational approaches to understand complex quantum systems and phenomena.</p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Research Focus -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-crosshairs"></i>
+                <h2>Research Focus</h2>
+            </div>
+            <div class="card-content">
+                <p>My research lies at the intersection of condensed matter physics, quantum information theory, and computational physics. I develop and apply novel theoretical frameworks to understand complex quantum systems, with particular emphasis on:</p>
+                
+                <div class="highlight" style="background: var(--light); border-left: 4px solid var(--accent); padding: 1.2rem; border-radius: 0 8px 8px 0; margin: 1.8rem 0;">
+                    <ul style="padding-left: 20px; line-height: 1.8;">
+                        <li>Topological phases of matter and their classification</li>
+                        <li>Tensor network methods for quantum simulation</li>
+                        <li>Quantum entanglement in many-body systems</li>
+                        <li>Non-equilibrium dynamics of quantum systems</li>
+                        <li>Quantum algorithms for condensed matter problems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Current Projects -->
+        <!-- <div class="card">
+            <div class="card-header">
+                <i class="fas fa-tasks"></i>
+                <h2>Current Research Projects</h2>
+            </div>
+            <div class="card-content">
+                <div class="projects-grid"> -->
+                    <!-- Project 1 -->
+                    
+                    <!-- Project 4 -->
+                    <!-- <div class="project-card">
+                        <div class="project-header">
+                            <h3>Fracton Phases</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-calendar"></i> 2023-Present</span>
+                                <span><i class="fas fa-users"></i> Collaborators: 2</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <p>Exploring novel fracton phases with exotic excitations that exhibit restricted mobility. Our work focuses on characterizing these phases through entanglement and topological properties.</p>
+                            <div class="project-tags">
+                                <span class="tag">Fractons</span>
+                                <span class="tag">Exotic Order</span>
+                                <span class="tag">Field Theory</span>
+                            </div>
+                        </div>
+                    </div> -->
+                <!-- </div>
+            </div>
+        </div> -->
+        
+        <!-- Publications -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-book"></i>
+                <h2>Selected Publications</h2>
+            </div>
+            <div class="card-content">
+                <ul class="publication-list">
+
+                    <!-- Publication 5 -->
+                    <li class="publication-item">
+                        <div class="publication-title">Symmetry-enforced minimal entanglement and correlation in quantum spin chains</div>
+                        <div class="publication-authors">Kangle Li and Liujun Zou</div>
+                        <div class="publication-meta">
+                            <span><i class="fas fa-journal-whills"></i>SciPost Phys. </span>
+                            <span><i class="fas fa-volume"></i> 19, 020</span>
+                            <span><i class="fas fa-calendar"></i> 2025</span>
+                            <span><i class="fas fa-journal-whills"></i> arXiv: 2412.20765.</span>
+                        </div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Journal</a>
+                            <a href="#"><i class="fab fa-arxiv"></i> arXiv</a>
+                        </div>
+                    </li>
+
+                    <!-- Publication 4 -->
+                    <li class="publication-item">
+                        <div class="publication-title">Quantum metric driven transition between superfluid and incoherent fluid</div>
+                        <div class="publication-authors">Xuzhe Ying and Kangle Li</div>
+                        <div class="publication-meta">
+                            <span><i class="fas fa-journal-whills"></i> Physical Review B</span>
+                            <span><i class="fas fa-volume"></i> XXX</span>
+                            <span><i class="fas fa-calendar"></i> 2025</span>
+                        </div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Journal</a>
+                            <a href="#"><i class="fab fa-arxiv"></i> arXiv</a>
+                        </div>
+                    </li>
+
+                    <!-- Publication 3 -->
+                    <li class="publication-item">
+                        <div class="publication-title">Constructive fermionic matrix product states for projected fermi sea</div>
+                        <div class="publication-authors">Kangle Li<sup>*</sup>, Yan-Bai Zhang<sup>*</sup>, Hoi Chun Po</div>
+                        <div class="publication-meta">
+                            <span><i class="fas fa-journal-whills"></i> Physical Review Research</span>
+                            <span><i class="fas fa-volume"></i> 7, 013182</span>
+                            <span><i class="fas fa-calendar"></i> (2025)</span>
+                        </div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Journal</a>
+                            <a href="#"><i class="fab fa-arxiv"></i> arXiv</a>
+                        </div>
+                    </li>
+                    
+                    <!-- Publication 2 -->
+                    <li class="publication-item">
+                        <div class="publication-title">Stacked tree construction for free-fermion projected entangled pair states</div>
+                        <div class="publication-authors">Yuman He, Kangle Li, Yan-Bai Zhang, Hoi Chun Po</div>
+                        <div class="publication-meta">
+                            <span><i class="fas fa-journal-whills"></i> Physical Review Research</span>
+                            <span><i class="fas fa-volume"></i> 6, L022016</span>
+                            <span><i class="fas fa-calendar"></i> 2024</span>
+                        </div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Journal</a>
+                            <a href="#"><i class="fab fa-arxiv"></i> arXiv</a>
+                        </div>
+                    </li>
+                    
+                    <!-- Publication 1 -->
+                    <li class="publication-item">
+                        <div class="publication-title">Higher-dimensional Jordan-Wigner transformation and auxiliary Majorana fermions</div>
+                        <div class="publication-authors">Kangle Li and Hoi Chun Po</div>
+                        <div class="publication-meta">
+                            <span><i class="fas fa-journal-whills"></i> Physical Review B</span>
+                            <span><i class="fas fa-volume"></i> 106, 115109</span>
+                            <span><i class="fas fa-calendar"></i> 2022</span>
+                        </div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Journal</a>
+                            <a href="#"><i class="fab fa-arxiv"></i> arXiv</a>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="https://arxiv.org/search/?query=Li%2C+Kangle&searchtype=author&source=header" style="display: inline-block; padding: 12px 30px; background: var(--accent); color: white; text-decoration: none; border-radius: 30px; font-weight: 500; transition: all 0.3s ease;">
+                        View All Publications at ArXiv<i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Collaborations
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-handshake"></i>
+                <h2>Collaborations</h2>
+            </div>
+            <div class="card-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="width: 100px; height: 100px; background: var(--light); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--accent);">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">National University of Singapore</h3>
+                        <p>Collaborating with Prof. Liujun Zou on topological quantum phases</p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="width: 100px; height: 100px; background: var(--light); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--accent);">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">HKUST</h3>
+                        <p>Continued collaboration with Prof. Adrian Po on tensor networks</p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="width: 100px; height: 100px; background: var(--light); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--accent);">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">Max Planck Institute</h3>
+                        <p>Joint project on quantum algorithms for material science</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About This Site</h3>
+                <p> This page exists as a small, uncontrolled experiment: it may help with a job at some point, or it may simply serve as an exhibition of its creator.
+                    This page represents a person who enjoys life with mathematics, physics, and computer science (and genshin impact!), and has recently spent an unreasonable amount of time thinking about AI. 
+                    He is generally warmhearted, occasionally social, and intermittently inclined toward solitude. 
+                    He sometimes enjoys discussing random topics with friends, usually without a clear objective. 
+                    His days are quiet, his curiosities are many, and somewhere between the two he finds abundance.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>lklmr AT nus.edu.sg</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>National University of Singapore</span>
+                    </div>
+                    <div>
+                        <!-- <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/likangle</span>
+                    </div>
+                    <div>
+                        <i class="fab fa-github"></i>
+                        <span>github.com/likangle</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Li Kangle (李康乐). All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

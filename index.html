@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Li Kangle - Quantum Physicist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a3a5f;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --light: #ebf8ff;
+            --dark: #2d3748;
+            --text: #4a5568;
+            --background: #f8fafc;
+        }
+        
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 58, 95, 0.9) 0%, rgba(44, 82, 130, 0.85) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a3a5f"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%232c5282" stroke-width="1"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(66, 153, 225, 0.1) 0%, transparent 15%),
+                radial-gradient(circle at 90% 80%, rgba(66, 153, 225, 0.1) 0%, transparent 15%);
+            z-index: 1;
+        }
+        
+        /* Main Content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: -60px auto 40px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.8rem;
+        }
+        
+        .card-header i {
+            background: var(--light);
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .card-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .card-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: var(--light);
+            border-left: 4px solid var(--accent);
+            padding: 1.2rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.8rem 0;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 1.5rem;
+        }
+        
+        .research-item {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .research-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .research-item i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .research-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* Education Timeline */
+        .education-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--light);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+        
+        .timeline-content {
+            width: calc(50% - 60px);
+            background: white;
+            border-radius: 10px;
+            padding: 1.8rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: 4px solid var(--accent);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            border-right: 4px solid var(--accent);
+        }
+        
+        .timeline-content .date {
+            background: var(--accent);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .institution {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .institution i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: rgba(255, 255, 255, 0.85);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .contact-info i {
+            margin-right: 12px;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            
+            .education-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                justify-content: flex-start !important;
+                margin-left: 50px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                border-right: none;
+                border-left: 4px solid var(--accent);
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                margin: 3px;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>Li Kangle</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <!-- <a href="personal_info.html">Personal Information</a> -->
+                <a href="research.html">Research</a>
+                <!-- <a href="publications.html">Publications</a> -->
+                <a href="miscellaneous.html">Miscellaneous</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <h1>Dr. Li Kangle (李康乐)</h1>
+            <h2>Physicist</h2>
+            <p>Exploring the frontiers of quantum many-body systems</p>
+            <!-- <p>Exploring the frontiers of quantum many-body systems through analytical and computational approaches to uncover fundamental principles of quantum mechanics and many-body systems.</p> -->
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-user-graduate"></i>
+                <h2>About Me</h2>
+            </div>
+            <div class="card-content">
+                <p>Hello! I am born in Qingyang (青阳), a small town in Anhui (安徽), China. 
+                In 2025, I obtained my PhD in Physics from the Hong Kong University of Science and Technology (HKUST), under the supervision of Prof. Adrian Po.
+                Currently, I am a postdoctoral researcher at the National University of Singapore working with Prof. Liujun Zou.</p>
+                
+                <div class="highlight">
+                    <p>My research focuses on theoretical problems in quantum many-body systems, employing both analytical techniques and numerical methods. I also have a strong interest in mathematical physics and quantum information theory.</p>
+                </div>
+                
+                <!-- <p>My approach combines rigorous mathematical frameworks with computational physics to solve complex problems in condensed matter physics and quantum information science. </p> -->
+            </div>
+        </div>
+        
+        <!-- Research Interests -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-flask"></i>
+                <h2>Research Interests</h2>
+            </div>
+            <div class="card-content">
+                <div class="research-grid">
+                    <div class="research-item">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Quantum Many-Body Systems</h3>
+                        <p>Study of emergent phenomena in complex quantum systems with large numbers of interacting particles.</p>
+                    </div>
+                    <div class="research-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Tensor Networks</h3>
+                        <p>Development and application of tensor network methods for simulating quantum systems.</p>
+                    </div>
+                    <div class="research-item">
+                        <i class="fas fa-brain"></i>
+                        <h3>Quantum Information</h3>
+                        <p>Exploration of information theoretical perspective in quantum systems, including the estimation of entanglement measures,
+                             the preparation and detection of quantum states etc.</p>
+                    </div>
+                    <div class="research-item">
+                        <i class="fas fa-shapes"></i>
+                        <h3>Topological Phases</h3>
+                        <p>Investigation of topological order and anyonic excitations in quantum matter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Employment-->
+        <!-- Employment Section -->
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i>
+        <h2>Professional Experience</h2>
+    </div>
+    <div class="card-content">
+        <div class="employment-timeline">
+            <!-- Current Position -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="date">2025.05 - Present</div>
+                    <h3>Postdoctoral Researcher</h3>
+                    <div class="institution">
+                        <i class="fas fa-university"></i>
+                        <span>National University of Singapore</span>
+                    </div>
+                    <p>Working with Prof. Liujun Zou on topological phases in quantum systems and tensor network approaches to quantum simulation.</p>
+                    <ul class="research-details">
+                        <li><i class="fas fa-caret-right"></i> Developing novel tensor network algorithms for 2D quantum systems</li>
+                        <li><i class="fas fa-caret-right"></i> Investigating quantum critical systems</li>
+                        <li><i class="fas fa-caret-right"></i> Quantum information and quantum many-body systems</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Teaching Experience
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="date">2020 - 2022</div>
+                    <h3>Teaching Assistant</h3>
+                    <div class="institution">
+                        <i class="fas fa-university"></i>
+                        <span>Hong Kong University of Science and Technology</span>
+                    </div>
+                    <p>Taught undergraduate courses and supervised student research projects.</p>
+                    <ul class="research-details">
+                        <li><i class="fas fa-caret-right"></i> Advanced Quantum Mechanics (PHYS 4110)</li>
+                        <li><i class="fas fa-caret-right"></i> Statistical Physics (PHYS 3034)</li>
+                        <li><i class="fas fa-caret-right"></i> Mentored 3 undergraduate research projects</li>
+                    </ul>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+        
+        <!-- Education -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>Education</h2>
+            </div>
+            <div class="card-content">
+                <div class="education-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="date">2021.01 - 2025.03</div>
+                            <h3>PhD in Physics</h3>
+                            <div class="institution">
+                                <i class="fas fa-university"></i>
+                                <span>Hong Kong University of Science and Technology</span>
+                            </div>
+                            <p>Conducting research in theoretical condensed matter physics and quantum many-body physics under the supervision of Prof. Adrian Po.</p>
+                            <p>PhD Thesis: "Tensor Networks: Fermions, Symmetries and Entanglement"</p>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="date">2018 - 2019</div>
+                            <h3>PhD in Physics</h3>
+                            <div class="institution">
+                                <i class="fas fa-university"></i>
+                                <span>Purdue University</span>
+                            </div>
+                            <p>Transferred to HKUST to continue doctoral research. Focused on quantum phase transitions.</p>
+                        </div>
+                    </div> -->
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="date">2014.09 - 2018.07</div>
+                            <h3>B.S. in Physics</h3>
+                            <div class="institution">
+                                <i class="fas fa-university"></i>
+                                <span>University of Science and Technology of China</span>
+                            </div>
+                            <p>Theoretical physics </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About This Site</h3>
+                <p>This page exists as a small, uncontrolled experiment: it may help with a job at some point, or it may simply serve as an exhibition of its creator.
+                    This page represents a person who enjoys life with mathematics, physics, and computer science (and genshin impact!), and has recently spent an unreasonable amount of time thinking about AI. 
+                    He is generally warmhearted, occasionally social, and intermittently inclined toward solitude. 
+                    He sometimes enjoys discussing random topics with friends, usually without a clear objective. 
+                    His days are quiet, his curiosities are many, and somewhere between the two he finds abundance.
+                </p>
+            </div>
+            
+            <!-- <div class="footer-section">
+                <h3>Research Focus</h3>
+                <p>Theoretical condensed matter physics, quantum information</p>
+            </div> -->
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>lklmr AT nus.edu.sg</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>National University of Singapore</span>
+                    </div>
+                    <!-- <div>
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/likangle</span>
+                    </div> -->
+                    <!-- <div>
+                        <i class="fab fa-github"></i>
+                        <span>github.com/likangle</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Li Kangle (李康乐). All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
