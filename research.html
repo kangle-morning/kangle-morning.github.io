@@ -115,6 +115,7 @@
                 radial-gradient(circle at 10% 20%, rgba(66, 153, 225, 0.1) 0%, transparent 15%),
                 radial-gradient(circle at 90% 80%, rgba(66, 153, 225, 0.1) 0%, transparent 15%);
             z-index: 1;
+            pointer-events: none; 
         }
         
         /* Main Content */
@@ -410,6 +411,34 @@
                 padding: 1.8rem;
             }
         }
+
+        .arxiv-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px); /* Adds a modern frosted glass effect */
+        }
+
+        .arxiv-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .arxiv-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -436,11 +465,16 @@
         <div class="header-content">
             <h1>Research</h1>
             <p>Exploring the frontiers of quantum physics through analytical and computational approaches to understand complex quantum systems and phenomena.</p>
+            <!-- <p><a href="https://arxiv.org/a/li_k_7.html">My arXiv</a></p> -->
+            <a href="https://arxiv.org/a/li_k_7.html" class="arxiv-btn">
+                <i class="fab fa-arxiv"></i> My arXiv Profile
+            </a>
+            <a href="https://scholar.google.com/citations?user=n4D2HSoAAAAJ&hl=zh-CN&oi=ao" class="arxiv-btn">
+                <i class="fab fa-arxiv"></i> Google Scholar
+            </a>
         </div>
-        <p><a href="https://arxiv.org/a/li_k_7.html">My arXiv</a></p>
     </section>
-    
-    
+
     <!-- Main Content -->
     <div class="container">
         <!-- Research Focus -->
